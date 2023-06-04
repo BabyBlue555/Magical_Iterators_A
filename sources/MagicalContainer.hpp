@@ -26,10 +26,10 @@ namespace ariel
         
         
         //for tidy: a copy constructor, a copy assignment operator, a move constructor or a move assignment operator
-        // MagicalContainer(MagicalContainer &other); // copy constructor
-        // MagicalContainer& operator=(const MagicalContainer& other); // copy assignment 
-        // MagicalContainer(MagicalContainer&& other) noexcept = default; // move constructor
-        // MagicalContainer& operator=(MagicalContainer&&) noexcept; // move assignment
+        MagicalContainer(MagicalContainer &other); // copy constructor
+        MagicalContainer& operator=(const MagicalContainer& other); // copy assignment 
+        MagicalContainer(MagicalContainer&& other) noexcept = default; // move constructor
+        MagicalContainer& operator=(MagicalContainer&&) noexcept; // move assignment
         
         // MagicalContainer& operator==(const MagicalContainer& other);
         // MagicalContainer& operator!=(const MagicalContainer& other);
@@ -63,9 +63,9 @@ namespace ariel
             ~AscendingIterator() = default;                               // destructor
 
             // for tidy satisfaction:
-           // AscendingIterator(const AscendingIterator &other) noexcept; // copy constructor
-           // AscendingIterator(AscendingIterator&& other) noexcept = default;
-           // AscendingIterator& operator=(AscendingIterator&&) noexcept;
+           AscendingIterator(const AscendingIterator &other) noexcept; // copy constructor 
+           AscendingIterator(AscendingIterator&& other) noexcept = default; // move costructor
+           AscendingIterator& operator=(AscendingIterator&&) noexcept; // move assignment
 
             int operator*() const;                               // dereference
             AscendingIterator &operator++();                      // increment
@@ -95,9 +95,9 @@ namespace ariel
             ~SideCrossIterator() = default;                               // destructor
 
             // for tidy satisfaction:
-            // SideCrossIterator(const SideCrossIterator &other) noexcept; // copy constructor
-            // SideCrossIterator(SideCrossIterator&& other) noexcept = default;
-            // SideCrossIterator& operator=(SideCrossIterator&&) noexcept ;
+            SideCrossIterator(const SideCrossIterator &other) noexcept; // copy constructor
+            SideCrossIterator(SideCrossIterator&& other) noexcept = default; // move constructor
+            SideCrossIterator& operator=(SideCrossIterator&&) noexcept ; // move assignment
 
             
 
@@ -127,9 +127,9 @@ namespace ariel
             ~PrimeIterator() = default;                               // destructor  
 
             // for tidy satisfaction:
-            // PrimeIterator(const PrimeIterator &other) noexcept; // copy constructor
-            // PrimeIterator(PrimeIterator&& other) noexcept = default;
-            // PrimeIterator& operator=(PrimeIterator&&) noexcept;
+            PrimeIterator(const PrimeIterator &other) noexcept; // copy constructor
+            PrimeIterator(PrimeIterator&& other) noexcept = default; // move constructor
+            PrimeIterator& operator=(PrimeIterator&&) noexcept; // move assignment
 
 
             int operator*() const;                               // dereference

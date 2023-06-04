@@ -13,6 +13,11 @@ namespace ariel{
     int MagicalContainer::size(){ return 1;}
     void MagicalContainer::removeElement(int element){}
 
+    // copy constructor
+   // MagicalContainer::MagicalContainer(MagicalContainer &other) : _container(other){}
+
+
+
 /*----------------------------------
 *AscendingIterator functions
 ----------------------------------*/
@@ -22,6 +27,12 @@ namespace ariel{
     MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator=(const AscendingIterator& other){
          return *this;
     }
+    // copy constructor
+    MagicalContainer::AscendingIterator::AscendingIterator(const AscendingIterator& other) noexcept
+    : _container(other._container), _index(other._index) {}
+
+
+
     // dereference
     int MagicalContainer::AscendingIterator::operator*() const{
         if (_index > _container._elements_ascending_order.size())
@@ -30,7 +41,6 @@ namespace ariel{
             }
 					
 		return *(_container._elements_ascending_order.at(_index));
-        // return container.getSortedElements()[_index];
     
     }
     // increment
@@ -74,6 +84,11 @@ namespace ariel{
     MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operator=(const SideCrossIterator& other){
         return *this;
     }
+
+    // copy constructor
+    MagicalContainer::SideCrossIterator::SideCrossIterator(const SideCrossIterator &other) noexcept : 
+    _container(other._container),_index(other._index), forward(other.forward), backward(other.backward), isForward(other.isForward) {}
+
     // dereference
     int MagicalContainer::SideCrossIterator::operator*() const{
         if (_index > _container._elements_sidecross_order.size())
@@ -130,6 +145,12 @@ namespace ariel{
     MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::operator=(const PrimeIterator& other){
         return *this;
     }
+
+    //copy constructor
+    MagicalContainer::PrimeIterator::PrimeIterator(const PrimeIterator& other) noexcept:
+    _container(other._container),_index(other._index){}
+
+
     // dereference
     int MagicalContainer::PrimeIterator::operator*() const{
            if (_index > _container._elements_prime_order.size())
