@@ -11,9 +11,10 @@ namespace ariel
     class MagicalContainer
     {
     private:
-        vector<int> elements;
-        vector<int> sortedElements;
-        vector<int> primeElements;
+        std::set<int> _elements;
+        std::vector<const int *> _elements_ascending_order;
+        std::vector<const int *> _elements_sidecross_order;
+        std::vector<const int *> _elements_prime_order;
     public:
         MagicalContainer();
         void addElement(int element);
@@ -25,10 +26,10 @@ namespace ariel
         
         
         //for tidy: a copy constructor, a copy assignment operator, a move constructor or a move assignment operator
-        MagicalContainer(MagicalContainer &other); // copy constructor
-        MagicalContainer& operator=(const MagicalContainer& other); // copy assignment 
-        MagicalContainer(MagicalContainer&& other) noexcept = default; // move constructor
-        MagicalContainer& operator=(MagicalContainer&&) noexcept; // move assignment
+        // MagicalContainer(MagicalContainer &other); // copy constructor
+        // MagicalContainer& operator=(const MagicalContainer& other); // copy assignment 
+        // MagicalContainer(MagicalContainer&& other) noexcept = default; // move constructor
+        // MagicalContainer& operator=(MagicalContainer&&) noexcept; // move assignment
         
         // MagicalContainer& operator==(const MagicalContainer& other);
         // MagicalContainer& operator!=(const MagicalContainer& other);
@@ -40,9 +41,12 @@ namespace ariel
         class PrimeIterator;
         
         //getters setters
-        vector<int> getElements() const { return elements; }
-        vector<int> getSortedElements() const { return sortedElements; }
-        vector<int> getPrimeElements() const { return primeElements; }
+        std::set<int> getElements() const { return _elements; }
+        vector<const int *> getAsscendingElements() const { return _elements_ascending_order;}
+        vector<const int *> getSortedElements() const { return _elements_sidecross_order; }
+        vector<const int *> getPrimeElements() const { return _elements_prime_order; }
+
+        
 
 
     };
@@ -50,8 +54,8 @@ namespace ariel
        class  MagicalContainer::AscendingIterator
         {
         private:
-            MagicalContainer &container;
-            size_t current;
+            MagicalContainer &_container;
+            size_t _index;
 
         public:
             AscendingIterator(MagicalContainer &container);
@@ -59,9 +63,9 @@ namespace ariel
             ~AscendingIterator() = default;                               // destructor
 
             // for tidy satisfaction:
-            AscendingIterator(const AscendingIterator &other) noexcept; // copy constructor
-            AscendingIterator(AscendingIterator&& other) noexcept = default;
-            AscendingIterator& operator=(AscendingIterator&&) noexcept;
+           // AscendingIterator(const AscendingIterator &other) noexcept; // copy constructor
+           // AscendingIterator(AscendingIterator&& other) noexcept = default;
+           // AscendingIterator& operator=(AscendingIterator&&) noexcept;
 
             int operator*() const;                               // dereference
             AscendingIterator &operator++();                      // increment
@@ -79,7 +83,8 @@ namespace ariel
         class  MagicalContainer::SideCrossIterator
         {
         private:
-            MagicalContainer &container;
+            MagicalContainer &_container;
+            size_t _index;
             size_t forward;
             size_t backward;
             bool isForward;
@@ -90,9 +95,9 @@ namespace ariel
             ~SideCrossIterator() = default;                               // destructor
 
             // for tidy satisfaction:
-            SideCrossIterator(const SideCrossIterator &other) noexcept; // copy constructor
-            SideCrossIterator(SideCrossIterator&& other) noexcept = default;
-            SideCrossIterator& operator=(SideCrossIterator&&) noexcept ;
+            // SideCrossIterator(const SideCrossIterator &other) noexcept; // copy constructor
+            // SideCrossIterator(SideCrossIterator&& other) noexcept = default;
+            // SideCrossIterator& operator=(SideCrossIterator&&) noexcept ;
 
             
 
@@ -113,18 +118,18 @@ namespace ariel
         class  MagicalContainer::PrimeIterator
         {
         private:
-            MagicalContainer &container;
-            size_t current;
+            MagicalContainer &_container;
+            size_t _index;
 
         public:
             PrimeIterator(MagicalContainer &container);
             PrimeIterator &operator=(const PrimeIterator &other); // assignment
-            ~PrimeIterator() = default;                               // destructor
+            ~PrimeIterator() = default;                               // destructor  
 
             // for tidy satisfaction:
-           PrimeIterator(const PrimeIterator &other) noexcept; // copy constructor
-            PrimeIterator(PrimeIterator&& other) noexcept = default;
-            PrimeIterator& operator=(PrimeIterator&&) noexcept;
+            // PrimeIterator(const PrimeIterator &other) noexcept; // copy constructor
+            // PrimeIterator(PrimeIterator&& other) noexcept = default;
+            // PrimeIterator& operator=(PrimeIterator&&) noexcept;
 
 
             int operator*() const;                               // dereference

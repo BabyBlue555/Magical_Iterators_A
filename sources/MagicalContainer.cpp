@@ -17,14 +17,20 @@ namespace ariel{
 *AscendingIterator functions
 ----------------------------------*/
     // constructor
-    MagicalContainer::AscendingIterator::AscendingIterator( MagicalContainer& container) : container(container), current(0){}
+    MagicalContainer::AscendingIterator::AscendingIterator( MagicalContainer& container) : _container(container), _index(0){}
     // assignment
     MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator=(const AscendingIterator& other){
          return *this;
     }
     // dereference
     int MagicalContainer::AscendingIterator::operator*() const{
-        return container.getSortedElements()[current];
+        if (_index > _container._elements_ascending_order.size())
+            {
+                throw std::out_of_range("Iterator out of range");
+            }
+					
+		return *(_container._elements_ascending_order.at(_index));
+        // return container.getSortedElements()[_index];
     
     }
     // increment
@@ -49,12 +55,12 @@ namespace ariel{
     }
 
     MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::begin(){
-        current = 0;
+        _index = 0;
         return *this;
     }
 
     MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::end(){
-        current = static_cast<size_t>(container.size());
+        _index = static_cast<size_t>(_container.size());
         return *this;
     }
 
@@ -63,14 +69,19 @@ namespace ariel{
 ----------------------------------*/
     // constructor
     MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer& container)
-    : container(container), forward(0), backward(static_cast<size_t>(container.size()-1)), isForward(true) {}
+    : _container(container),_index(0), forward(0), backward(static_cast<size_t>(container.size()-1)), isForward(true) {}
     // assignment
     MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operator=(const SideCrossIterator& other){
         return *this;
     }
     // dereference
     int MagicalContainer::SideCrossIterator::operator*() const{
-        return container.getSortedElements()[forward];
+        if (_index > _container._elements_sidecross_order.size())
+            {
+                throw std::out_of_range("Iterator out of range");
+            }
+					
+		return *(_container._elements_sidecross_order.at(_index));
     
     }
     // increment
@@ -96,13 +107,13 @@ namespace ariel{
 
     MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::begin(){
         forward = 0;
-        backward = container.getElements().size() - 1;
+        backward = _container.getElements().size() - 1;
         isForward = true;
         return *this;
     }
 
     MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::end(){
-        forward = container.getElements().size();
+        forward = _container.getElements().size();
         backward = 0;
         isForward = true;
         return *this;
@@ -114,14 +125,20 @@ namespace ariel{
 
     // constructor
     MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer& container)
-    : container(container), current(0) {}
+    : _container(container), _index(0) {}
     // assignment
     MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::operator=(const PrimeIterator& other){
         return *this;
     }
     // dereference
     int MagicalContainer::PrimeIterator::operator*() const{
-        return container.getSortedElements()[current];
+           if (_index > _container._elements_prime_order.size())
+            {
+                throw std::out_of_range("Iterator out of range");
+            }
+					
+		return *(_container._elements_prime_order.at(_index));
+    
     
     }
     // increment
@@ -146,13 +163,13 @@ namespace ariel{
     }
 
     MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::begin(){
-        current = 0;
+        _index = 0;
         return *this;
     }
 
 
     MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::end(){
-        current = container.getPrimeElements().size(); //last number
+        _index = _container.getPrimeElements().size(); //last number
         return *this;
     }
 
