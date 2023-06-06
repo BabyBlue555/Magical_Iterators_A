@@ -4,7 +4,9 @@
 #include <vector>
 #include <string>
 #include <bits/stdc++.h>
-using namespace std;
+// don't put using namespace in hpp
+// instead,write the namespace explicitly qualify names (example - std::vector...)
+// source : https://www.appmarq.com/public/changeability,8066,Avoid-using-using-namespace-or-using-declarations-in-header-files
 
 namespace ariel
 {
@@ -15,6 +17,7 @@ namespace ariel
         std::vector<const int *> _elements_ascending_order;
         std::vector<const int *> _elements_sidecross_order;
         std::vector<const int *> _elements_prime_order;
+        
     public:
         MagicalContainer();
         void addElement(int element);
@@ -42,9 +45,9 @@ namespace ariel
         
         //getters setters
         std::set<int> getElements() const { return _elements; }
-        vector<const int *> getAsscendingElements() const { return _elements_ascending_order;}
-        vector<const int *> getSortedElements() const { return _elements_sidecross_order; }
-        vector<const int *> getPrimeElements() const { return _elements_prime_order; }
+        std::vector<const int *> getAsscendingElements() const { return _elements_ascending_order;}
+        std::vector<const int *> getSortedElements() const { return _elements_sidecross_order; }
+        std::vector<const int *> getPrimeElements() const { return _elements_prime_order; }
 
         
 
